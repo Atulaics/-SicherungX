@@ -106,6 +106,7 @@ class AgentApp:
             global API_URL
             API_URL = f"{server_url}/api/agent"
             try:
+                headers = {'X-Agent-Key': 'default-agent-key'}
                 res = requests.post(f"{API_URL}/login", json={
                     "username": username,
                     "password": password,
@@ -114,7 +115,7 @@ class AgentApp:
                     "ip_address": self.ip_address,
                     "os_info": self.os_info,
                     "system_username": self.system_username
-                }, timeout=5)
+                }, headers=headers, timeout=5)
                 
                 if res.status_code == 200:
                     data = res.json()
@@ -163,7 +164,8 @@ class AgentApp:
                     log_queue.clear()
                 
                 try:
-                    res = requests.post(f"{API_URL}/submit", json=payload, timeout=10)
+                    headers = {'X-Agent-Key': 'default-agent-key'}
+                    res = requests.post(f"{API_URL}/submit", json=payload, headers=headers, timeout=10)
                     if res.status_code == 201:
                         data = res.json()
                         if data.get('command') == 'isolate':

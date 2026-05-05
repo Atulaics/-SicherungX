@@ -13,6 +13,12 @@ from flask import Response
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from utils.logger import setup_logger
 from ai_model.detector import BehaviorDetector
+from alerts.notifier import AlertNotifier
+
+def verify_agent_key():
+    expected_key = os.getenv('AGENT_API_KEY', 'default-agent-key')
+    provided_key = request.headers.get('X-Agent-Key')
+    return provided_key == expected_key
 
 logger = setup_logger('backend_routes', 'backend.log')
 DB_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'database', 'sicherungx.db')
@@ -46,6 +52,12 @@ try:
 except Exception as e:
     logger.error(f"Failed to load AI detector: {e}")
     detector = None
+
+try:
+    notifier = AlertNotifier()
+except Exception as e:
+    logger.error(f"Failed to load Alert Notifier: {e}")
+    notifier = None
 
 def get_db_connection():
     conn = sqlite3.connect(DB_PATH)
@@ -488,6 +500,9 @@ def update_settings():
 @api_bp.route('/agent/login', methods=['POST'])
 def agent_login():
     """Agent authentication and device binding"""
+    if not verify_agent_key():
+        return jsonify({'error': 'Unauthorized Agent Key'}), 401
+        
     data = request.json
     username = data.get('username')
     password = data.get('password')
@@ -541,6 +556,9 @@ def agent_login():
 @api_bp.route('/agent/submit', methods=['POST'])
 def receive_agent_data():
     """Endpoint for remote agents to submit logs and get analyzed in real-time."""
+    if not verify_agent_key():
+        return jsonify({'error': 'Unauthorized Agent Key'}), 401
+
     # Data is queued by agent if offline, so this can receive an array or a single object.
     data = request.json
     if not data:
@@ -616,6 +634,12 @@ def receive_agent_data():
                     INSERT INTO alerts (username, device_id, activity_type, risk_score, alert_status)
                     VALUES (?, ?, ?, ?, ?)
                 ''', (username, device_id, activity_type, risk_score, 'Triggered'))
+                
+                if notifier:
+                    try:
+                        notifier.send_alert(username, activity_type, risk_score)
+                    except Exception as e:
+                        logger.error(f"Notifier failed: {e}")
 
         conn.commit()
         conn.close()

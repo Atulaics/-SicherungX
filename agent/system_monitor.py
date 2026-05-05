@@ -30,7 +30,9 @@ class NetworkMonitor(threading.Thread):
                 'files_accessed': 0,
                 'data_transfer_mb': data_transfer_mb
             }
-            response = requests.post('http://127.0.0.1:5000/api/agent/submit', json=payload)
+            headers = {'X-Agent-Key': 'default-agent-key'}
+            response = requests.post('http://127.0.0.1:5000/api/agent/submit', json=payload, headers=headers)
+
             if response.status_code != 201:
                 logger.error(f"Failed to log Network activity via API: {response.status_code} - {response.text}")
         except Exception as e:

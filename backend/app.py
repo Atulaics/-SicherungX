@@ -16,7 +16,11 @@ def create_app():
                 template_folder=os.path.join(os.path.dirname(os.path.dirname(__file__)), 'dashboard', 'templates'),
                 static_folder=os.path.join(os.path.dirname(os.path.dirname(__file__)), 'dashboard', 'static'))
     
-    app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'default-dev-key')
+    app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+    if not app.config['SECRET_KEY'] and os.getenv('FLASK_ENV') != 'development':
+        raise ValueError("CRITICAL: No SECRET_KEY set for production environment!")
+    elif not app.config['SECRET_KEY']:
+        app.config['SECRET_KEY'] = 'default-dev-key'
     
     # Initialize Flask-Login
     login_manager.init_app(app)
@@ -34,5 +38,6 @@ if __name__ == '__main__':
     init_db() # Run DB Init
     app = create_app()
     from waitress import serve
-    logger.info("Starting server on 192.168.56.1:5000...")
-    serve(app, host='192.168.56.1', port=5000)
+    host_ip = os.getenv('HOST_IP', '0.0.0.0')
+    logger.info(f"Starting server on {host_ip}:5000...")
+    serve(app, host=host_ip, port=5000)

@@ -85,6 +85,14 @@ def init_db():
             )
         ''')
 
+        # Create system_settings table
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS system_settings (
+                key TEXT UNIQUE PRIMARY KEY,
+                value TEXT
+            )
+        ''')
+
         # Insert default admin user ('admin', 'password')
         cursor.execute("SELECT COUNT(*) FROM users WHERE username='admin'")
         if cursor.fetchone()[0] == 0:
