@@ -74,7 +74,7 @@ class AgentApp:
 
         # Server URL
         tk.Label(self.root, text="Server Address", font=("Inter", 10), fg="#e2e8f0", bg="#0f172a").pack(anchor="w", padx=40)
-        self.server_var = tk.StringVar(value="http://127.0.0.1:5000")
+        self.server_var = tk.StringVar(value="https://sicherungx.onrender.com")
         tk.Entry(self.root, textvariable=self.server_var, font=("Inter", 12), bg="#1e293b", fg="white", insertbackground="white").pack(fill="x", padx=40, pady=(5, 15), ipady=5)
 
         # Credentials
@@ -106,7 +106,7 @@ class AgentApp:
             global API_URL
             API_URL = f"{server_url}/api/agent"
             try:
-                headers = {'X-Agent-Key': 'default-agent-key'}
+                headers = {'X-Agent-Key': 'my-agent-key-123'}
                 res = requests.post(f"{API_URL}/login", json={
                     "username": username,
                     "password": password,
@@ -164,7 +164,7 @@ class AgentApp:
                     log_queue.clear()
                 
                 try:
-                    headers = {'X-Agent-Key': 'default-agent-key'}
+                    headers = {'X-Agent-Key': 'my-agent-key-123'}
                     res = requests.post(f"{API_URL}/submit", json=payload, headers=headers, timeout=10)
                     if res.status_code == 201:
                         data = res.json()

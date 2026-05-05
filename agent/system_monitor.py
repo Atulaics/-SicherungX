@@ -30,8 +30,8 @@ class NetworkMonitor(threading.Thread):
                 'files_accessed': 0,
                 'data_transfer_mb': data_transfer_mb
             }
-            headers = {'X-Agent-Key': 'default-agent-key'}
-            response = requests.post('http://127.0.0.1:5000/api/agent/submit', json=payload, headers=headers)
+            headers = {'X-Agent-Key': 'my-agent-key-123'}
+            response = requests.post('https://sicherungx.onrender.com/api/agent/submit', json=payload, headers=headers)
 
             if response.status_code != 201:
                 logger.error(f"Failed to log Network activity via API: {response.status_code} - {response.text}")
