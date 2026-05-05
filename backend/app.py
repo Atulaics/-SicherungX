@@ -39,5 +39,6 @@ if __name__ == '__main__':
     app = create_app()
     from waitress import serve
     host_ip = os.getenv('HOST_IP', '0.0.0.0')
-    logger.info(f"Starting server on {host_ip}:5000...")
-    serve(app, host=host_ip, port=5000)
+    port = int(os.getenv('PORT', 5000))
+    logger.info(f"Starting server on {host_ip}:{port}...")
+    serve(app, host=host_ip, port=port)
