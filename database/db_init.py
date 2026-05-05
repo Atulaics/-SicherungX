@@ -69,6 +69,7 @@ def init_db():
                 system_username TEXT,
                 last_seen DATETIME DEFAULT (datetime('now')),
                 status TEXT DEFAULT 'active',
+                is_blocked INTEGER DEFAULT 0,
                 FOREIGN KEY(user_id) REFERENCES users(id)
             )
         ''')
@@ -108,6 +109,13 @@ def init_db():
                 INSERT INTO users (username, email, password_hash, role, full_name)
                 VALUES (?, ?, ?, ?, ?)
             ''', ('employee', 'employee@sicherungx.com', generate_password_hash('password'), 'employee', 'Test Employee'))
+
+        # Ensure is_blocked exists for legacy databases
+        try:
+            cursor.execute("ALTER TABLE devices ADD COLUMN is_blocked INTEGER DEFAULT 0")
+        except sqlite3.OperationalError:
+            pass # Column already exists
+
 
         conn.commit()
         logger.info(f"Database initialized successfully at {DB_PATH}")
