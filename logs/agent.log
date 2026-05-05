@@ -1,0 +1,188 @@
+2026-05-02 00:00:45,151 INFO Initializing SicherungX Endpoint Agent...
+2026-05-02 00:00:45,152 INFO Starting USB Monitor...
+2026-05-02 00:00:45,153 INFO Starting File Monitor on paths: ['C:\\Users\\atulp', 'C:\\Users\\atulp\\Downloads']
+2026-05-02 00:00:45,153 INFO Starting Network Monitor...
+2026-05-02 00:00:45,153 INFO Agent successfully started for user: atulp
+2026-05-02 00:01:45,302 INFO Logged 245 file operations for atulp
+2026-05-02 00:02:45,220 INFO Logged 2.25 MB network transfer for atulp
+2026-05-02 00:02:45,351 INFO Logged 594 file operations for atulp
+2026-05-02 00:03:45,420 INFO Logged 346 file operations for atulp
+2026-05-02 00:04:45,279 INFO Logged 3.89 MB network transfer for atulp
+2026-05-02 00:04:45,463 INFO Logged 4607 file operations for atulp
+2026-05-02 00:05:45,309 INFO Logged 8.65 MB network transfer for atulp
+2026-05-02 00:05:45,501 INFO Logged 14726 file operations for atulp
+2026-05-02 00:06:45,358 INFO Logged 18.22 MB network transfer for atulp
+2026-05-02 00:06:45,531 INFO Logged 15535 file operations for atulp
+2026-05-02 00:07:45,390 INFO Logged 3.63 MB network transfer for atulp
+2026-05-02 00:07:45,574 INFO Logged 21367 file operations for atulp
+2026-05-02 00:08:45,440 INFO Logged 5.81 MB network transfer for atulp
+2026-05-02 00:08:45,650 INFO Logged 15045 file operations for atulp
+2026-05-02 00:09:45,479 INFO Logged 4.14 MB network transfer for atulp
+2026-05-02 00:09:45,695 INFO Logged 9685 file operations for atulp
+2026-05-02 00:10:45,509 INFO Logged 7.24 MB network transfer for atulp
+2026-05-02 00:10:45,731 INFO Logged 314 file operations for atulp
+2026-05-02 00:11:45,787 INFO Logged 275 file operations for atulp
+2026-05-02 00:12:45,588 INFO Logged 3.63 MB network transfer for atulp
+2026-05-02 00:12:45,836 INFO Logged 158 file operations for atulp
+2026-05-02 00:13:45,682 INFO Logged 5.02 MB network transfer for atulp
+2026-05-02 00:13:45,900 INFO Logged 552 file operations for atulp
+2026-05-02 00:14:45,718 INFO Logged 9.41 MB network transfer for atulp
+2026-05-02 00:14:45,969 INFO Logged 236 file operations for atulp
+2026-05-02 00:15:45,753 INFO Logged 2.05 MB network transfer for atulp
+2026-05-02 00:15:46,034 INFO Logged 846 file operations for atulp
+2026-05-02 00:16:46,106 INFO Logged 307 file operations for atulp
+2026-05-02 00:17:46,180 INFO Logged 262 file operations for atulp
+2026-05-02 00:18:46,244 INFO Logged 304 file operations for atulp
+2026-05-02 00:19:46,313 INFO Logged 235 file operations for atulp
+2026-05-02 00:20:46,353 INFO Logged 189 file operations for atulp
+2026-05-02 00:21:45,888 INFO Logged 1.57 MB network transfer for atulp
+2026-05-02 00:21:46,439 INFO Logged 372 file operations for atulp
+2026-05-02 00:22:46,525 INFO Logged 440 file operations for atulp
+2026-05-02 00:23:45,971 INFO Logged 1.34 MB network transfer for atulp
+2026-05-02 00:23:46,593 INFO Logged 219 file operations for atulp
+2026-05-02 00:24:46,035 INFO Logged 4.32 MB network transfer for atulp
+2026-05-02 00:24:46,660 INFO Logged 288 file operations for atulp
+2026-05-02 00:25:46,075 INFO Logged 5.17 MB network transfer for atulp
+2026-05-02 00:25:46,731 INFO Logged 1247 file operations for atulp
+2026-05-02 00:26:46,151 INFO Logged 3.43 MB network transfer for atulp
+2026-05-02 00:26:46,795 INFO Logged 381 file operations for atulp
+2026-05-02 00:27:46,218 INFO Logged 3.40 MB network transfer for atulp
+2026-05-02 00:27:46,846 INFO Logged 310 file operations for atulp
+2026-05-02 00:28:46,284 INFO Logged 3.57 MB network transfer for atulp
+2026-05-02 00:28:46,899 INFO Logged 211 file operations for atulp
+2026-05-02 00:29:46,312 INFO Logged 6.10 MB network transfer for atulp
+2026-05-02 00:29:46,934 INFO Logged 180 file operations for atulp
+2026-05-02 00:30:46,339 INFO Logged 1.38 MB network transfer for atulp
+2026-05-02 00:30:46,969 INFO Logged 190 file operations for atulp
+2026-05-02 00:31:46,388 INFO Logged 5.69 MB network transfer for atulp
+2026-05-02 00:31:47,014 INFO Logged 386 file operations for atulp
+2026-05-02 00:32:46,441 INFO Logged 3.42 MB network transfer for atulp
+2026-05-02 00:32:47,083 INFO Logged 488 file operations for atulp
+2026-05-02 00:33:46,484 INFO Logged 6.54 MB network transfer for atulp
+2026-05-02 00:33:47,135 INFO Logged 574 file operations for atulp
+2026-05-02 00:34:46,533 INFO Logged 1.07 MB network transfer for atulp
+2026-05-02 00:34:47,181 INFO Logged 212 file operations for atulp
+2026-05-02 00:35:47,234 INFO Logged 188 file operations for atulp
+2026-05-02 00:36:46,619 INFO Logged 1.39 MB network transfer for atulp
+2026-05-02 00:36:47,282 INFO Logged 376 file operations for atulp
+2026-05-02 00:37:48,680 ERROR API Error in Network Monitor: HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /api/agent/submit (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-05-02 00:37:48,681 INFO Logged 1.55 MB network transfer for atulp
+2026-05-02 00:37:49,317 ERROR API Error in File Monitor: HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /api/agent/submit (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-05-02 00:37:49,317 INFO Logged 610 file operations for atulp
+2026-05-02 00:38:50,725 ERROR API Error in Network Monitor: HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /api/agent/submit (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-05-02 00:38:50,726 INFO Logged 3.57 MB network transfer for atulp
+2026-05-02 00:38:51,380 ERROR API Error in File Monitor: HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /api/agent/submit (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-05-02 00:38:51,380 INFO Logged 358 file operations for atulp
+2026-05-02 00:39:52,767 ERROR API Error in Network Monitor: HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /api/agent/submit (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-05-02 00:39:52,767 INFO Logged 1.39 MB network transfer for atulp
+2026-05-02 00:39:53,435 ERROR API Error in File Monitor: HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /api/agent/submit (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-05-02 00:39:53,439 INFO Logged 209 file operations for atulp
+2026-05-02 00:40:54,827 ERROR API Error in Network Monitor: HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /api/agent/submit (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-05-02 00:40:54,828 INFO Logged 1.45 MB network transfer for atulp
+2026-05-02 00:40:55,482 ERROR API Error in File Monitor: HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /api/agent/submit (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-05-02 00:40:55,482 INFO Logged 240 file operations for atulp
+2026-05-02 00:41:55,067 INFO Logged 2.93 MB network transfer for atulp
+2026-05-02 00:41:55,525 INFO Logged 1552 file operations for atulp
+2026-05-02 00:42:55,142 INFO Logged 1.17 MB network transfer for atulp
+2026-05-02 00:42:55,590 INFO Logged 218 file operations for atulp
+2026-05-02 00:43:55,626 INFO Logged 703 file operations for atulp
+2026-05-02 00:44:55,195 INFO Logged 1.86 MB network transfer for atulp
+2026-05-02 00:44:55,664 INFO Logged 548 file operations for atulp
+2026-05-02 00:45:55,696 INFO Logged 723 file operations for atulp
+2026-05-02 00:46:55,233 INFO Logged 1.87 MB network transfer for atulp
+2026-05-02 00:46:55,723 INFO Logged 546 file operations for atulp
+2026-05-02 00:47:55,290 INFO Logged 1.94 MB network transfer for atulp
+2026-05-02 00:47:55,773 INFO Logged 521 file operations for atulp
+2026-05-02 00:48:55,346 INFO Logged 1.00 MB network transfer for atulp
+2026-05-02 00:48:55,806 INFO Logged 614 file operations for atulp
+2026-05-02 00:49:55,860 INFO Logged 183 file operations for atulp
+2026-05-02 00:50:55,899 INFO Logged 274 file operations for atulp
+2026-05-02 00:51:55,933 INFO Logged 179 file operations for atulp
+2026-05-02 00:52:55,972 INFO Logged 636 file operations for atulp
+2026-05-02 00:53:57,436 ERROR API Error in Network Monitor: HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /api/agent/submit (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-05-02 00:53:57,437 INFO Logged 1.61 MB network transfer for atulp
+2026-05-02 00:53:58,011 ERROR API Error in File Monitor: HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /api/agent/submit (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-05-02 00:53:58,012 INFO Logged 493 file operations for atulp
+2026-05-02 00:54:59,469 ERROR API Error in Network Monitor: HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /api/agent/submit (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-05-02 00:54:59,470 INFO Logged 5.63 MB network transfer for atulp
+2026-05-02 00:55:00,061 ERROR API Error in File Monitor: HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /api/agent/submit (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-05-02 00:55:00,061 INFO Logged 277 file operations for atulp
+2026-05-02 00:56:01,518 ERROR API Error in Network Monitor: HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /api/agent/submit (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-05-02 00:56:01,518 INFO Logged 3.82 MB network transfer for atulp
+2026-05-02 00:56:02,106 ERROR API Error in File Monitor: HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /api/agent/submit (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-05-02 00:56:02,107 INFO Logged 331 file operations for atulp
+2026-05-02 00:57:03,587 ERROR API Error in Network Monitor: HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /api/agent/submit (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-05-02 00:57:03,587 INFO Logged 3.69 MB network transfer for atulp
+2026-05-02 00:57:04,164 ERROR API Error in File Monitor: HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /api/agent/submit (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-05-02 00:57:04,165 INFO Logged 310 file operations for atulp
+2026-05-02 00:58:03,603 ERROR Failed to log Network activity via API: 400 - {"error":"Missing username or device_id"}
+
+2026-05-02 00:58:03,603 INFO Logged 5.69 MB network transfer for atulp
+2026-05-02 00:58:04,174 ERROR Failed to log File activity via API: 400 - {"error":"Missing username or device_id"}
+
+2026-05-02 00:58:04,175 INFO Logged 635 file operations for atulp
+2026-05-02 00:59:04,182 ERROR Failed to log File activity via API: 400 - {"error":"Missing username or device_id"}
+
+2026-05-02 00:59:04,183 INFO Logged 1201 file operations for atulp
+2026-05-02 01:00:04,189 ERROR Failed to log File activity via API: 400 - {"error":"Missing username or device_id"}
+
+2026-05-02 01:00:04,189 INFO Logged 688 file operations for atulp
+2026-05-02 01:01:03,651 ERROR Failed to log Network activity via API: 400 - {"error":"Missing username or device_id"}
+
+2026-05-02 01:01:03,652 INFO Logged 3.23 MB network transfer for atulp
+2026-05-02 01:01:04,195 ERROR Failed to log File activity via API: 400 - {"error":"Missing username or device_id"}
+
+2026-05-02 01:01:04,196 INFO Logged 378 file operations for atulp
+2026-05-02 01:02:03,666 ERROR Failed to log Network activity via API: 400 - {"error":"Missing username or device_id"}
+
+2026-05-02 01:02:03,667 INFO Logged 1.09 MB network transfer for atulp
+2026-05-02 01:02:04,200 ERROR Failed to log File activity via API: 400 - {"error":"Missing username or device_id"}
+
+2026-05-02 01:02:04,201 INFO Logged 707 file operations for atulp
+2026-05-02 01:03:03,676 ERROR Failed to log Network activity via API: 400 - {"error":"Missing username or device_id"}
+
+2026-05-02 01:03:03,676 INFO Logged 2.90 MB network transfer for atulp
+2026-05-02 01:03:04,207 ERROR Failed to log File activity via API: 400 - {"error":"Missing username or device_id"}
+
+2026-05-02 01:03:04,207 INFO Logged 336 file operations for atulp
+2026-05-02 01:04:11,483 INFO Agent logged in as employee. Starting monitors...
+2026-05-02 01:04:11,486 INFO Starting USB Monitor...
+2026-05-02 01:04:11,486 INFO Starting File Monitor on paths: ['C:\\Users\\Public\\Documents']
+2026-05-02 01:04:11,487 INFO Starting Network Monitor...
+2026-05-02 01:05:11,597 INFO Logged 2.67 MB network transfer for employee
+2026-05-02 01:08:11,751 INFO Logged 2.14 MB network transfer for employee
+2026-05-02 01:09:11,777 INFO Logged 8.12 MB network transfer for employee
+2026-05-02 01:10:11,822 INFO Logged 2.56 MB network transfer for employee
+2026-05-02 01:11:11,857 INFO Logged 3.63 MB network transfer for employee
+2026-05-02 01:12:11,897 INFO Logged 5.40 MB network transfer for employee
+2026-05-02 01:13:11,932 INFO Logged 2.66 MB network transfer for employee
+2026-05-02 01:16:12,009 INFO Logged 7.03 MB network transfer for employee
+2026-05-02 01:17:12,044 INFO Logged 2.24 MB network transfer for employee
+2026-05-02 01:18:12,070 INFO Logged 1.22 MB network transfer for employee
+2026-05-02 01:19:14,120 ERROR API Error in Network Monitor: HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /api/agent/submit (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-05-02 01:19:14,121 INFO Logged 2.84 MB network transfer for employee
+2026-05-02 01:20:16,175 ERROR API Error in Network Monitor: HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /api/agent/submit (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-05-02 01:20:16,176 INFO Logged 5.84 MB network transfer for employee
+2026-05-02 01:21:18,240 ERROR API Error in Network Monitor: HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /api/agent/submit (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-05-02 01:21:18,240 INFO Logged 8.37 MB network transfer for employee
+2026-05-02 01:22:20,280 ERROR API Error in Network Monitor: HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /api/agent/submit (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-05-02 01:22:20,281 INFO Logged 11.40 MB network transfer for employee
+2026-05-02 01:23:22,327 ERROR API Error in Network Monitor: HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /api/agent/submit (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-05-02 01:23:22,328 INFO Logged 3.28 MB network transfer for employee
+2026-05-02 01:24:24,382 ERROR API Error in Network Monitor: HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /api/agent/submit (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-05-02 01:24:24,383 INFO Logged 5.00 MB network transfer for employee
+2026-05-02 01:25:26,432 ERROR API Error in Network Monitor: HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /api/agent/submit (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-05-02 01:25:26,432 INFO Logged 5.69 MB network transfer for employee
+2026-05-02 01:27:26,473 INFO Logged 1.11 MB network transfer for employee
+2026-05-02 01:28:26,520 INFO Logged 3.85 MB network transfer for employee
+2026-05-02 01:31:26,594 INFO Logged 1.46 MB network transfer for employee
+2026-05-02 01:32:26,637 INFO Logged 3.17 MB network transfer for employee
+2026-05-02 01:34:26,674 INFO Logged 1.92 MB network transfer for employee
+2026-05-02 01:35:26,699 INFO Logged 3.46 MB network transfer for employee
+2026-05-02 01:36:28,746 ERROR API Error in Network Monitor: HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /api/agent/submit (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-05-02 01:36:28,747 INFO Logged 5.34 MB network transfer for employee
+2026-05-02 02:48:56,408 INFO Agent logged in as atul. Starting monitors...
+2026-05-02 02:48:56,415 INFO Starting USB Monitor...
+2026-05-02 02:48:56,415 INFO Starting File Monitor on paths: ['C:\\Users\\Public\\Documents']
+2026-05-02 02:48:56,416 INFO Starting Network Monitor...
+2026-05-02 02:49:56,448 INFO Logged 2.46 MB network transfer for atul

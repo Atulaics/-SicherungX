@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block page_title %}Audit Logs{% endblock %}
+
+{% block content %}
+<div class="glass-panel p-6 rounded-2xl h-full flex flex-col">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+        <div>
+            <h2 class="text-lg font-bold text-white">System Audit Trail</h2>
+            <p class="text-sm text-slate-400">Irrefutable logs of administrative and system-level actions.</p>
+        </div>
+        <div class="relative w-full sm:w-auto">
+            <i class="fa-solid fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-500 text-sm"></i>
+            <input type="text" id="auditSearch" placeholder="Search audit events..." class="bg-slate-800 border border-slate-700 text-sm rounded-lg pl-9 pr-4 py-2 focus:outline-none focus:border-sky-500 text-slate-300 w-full sm:w-64 transition">
+        </div>
+    </div>
+    
+    <div class="overflow-x-auto flex-1">
+        <table class="w-full text-left border-collapse">
+            <thead>
+                <tr class="border-b border-slate-700/50 text-slate-400 text-xs uppercase tracking-wider">
+                    <th class="pb-3 pl-4 font-semibold w-40">Timestamp</th>
+                    <th class="pb-3 font-semibold">Action</th>
+                    <th class="pb-3 font-semibold">Performed By</th>
+                    <th class="pb-3 font-semibold">Target User</th>
+                    <th class="pb-3 pr-4 font-semibold">Details</th>
+                </tr>
+            </thead>
+            <tbody id="auditTable" class="text-sm divide-y divide-slate-700/30">
+                <tr><td colspan="5" class="text-center py-8 text-slate-500">Loading audit logs...</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    let allLogs = [];
+
+    async function loadAuditLogs() {
+        try {
+            const res = await fetch('/api/audit-logs');
+            allLogs = await res.json();
+            renderLogs(allLogs);
+        } catch(e) {
+            console.error(e);
+        }
+    }
+
+    function renderLogs(logs) {
+        const tbody = document.getElementById('auditTable');
+        tbody.innerHTML = '';
+        
+        if (logs.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="5" class="text-center py-8 text-slate-500">No audit logs match your search.</td></tr>';
+            return;
+        }
+
+        logs.forEach(log => {
+            let actionColor = 'text-sky-400 bg-sky-500/10 border-sky-500/20';
+            if (log.action.includes('REMOVE') || log.action.includes('DELETE')) actionColor = 'text-red-400 bg-red-500/10 border-red-500/20';
+            if (log.action.includes('CREATE') || log.action.includes('BIND')) actionColor = 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20';
+            
+            tbody.innerHTML += `
+                <tr class="hover:bg-slate-800/30 transition">
+                    <td class="py-4 pl-4 text-slate-400 font-mono text-xs whitespace-nowrap">${formatUTCtoLocal(log.timestamp)}</td>
+                    <td class="py-4">
+                        <span class="px-2 py-1 rounded text-[10px] font-bold tracking-wider border ${actionColor}">${log.action}</span>
+                    </td>
+                    <td class="py-4 font-medium text-white">${log.performed_by}</td>
+                    <td class="py-4 text-slate-300">${log.target_user}</td>
+                    <td class="py-4 pr-4 text-slate-400 truncate max-w-md">${log.details}</td>
+                </tr>
+            `;
+        });
+    }
+
+    document.getElementById('auditSearch').addEventListener('input', (e) => {
+        const term = e.target.value.toLowerCase();
+        const filtered = allLogs.filter(l => 
+            l.action.toLowerCase().includes(term) ||
+            l.performed_by.toLowerCase().includes(term) ||
+            l.target_user.toLowerCase().includes(term) ||
+            l.details.toLowerCase().includes(term)
+        );
+        renderLogs(filtered);
+    });
+
+    loadAuditLogs();
+</script>
+{% endblock %}

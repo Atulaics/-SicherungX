@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SicherungX - Data Leak Prevention</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0f172a; /* Slate 900 */
+            color: #f8fafc; /* Slate 50 */
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(90deg, #38bdf8, #818cf8);
+        }
+        .btn-glow {
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+            transition: all 0.3s ease;
+        }
+        .btn-glow:hover {
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.8);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col relative">
+    <!-- Background Decor -->
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-blue-600 opacity-20 blur-[100px]"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-purple-600 opacity-20 blur-[100px]"></div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300 py-4 px-8">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="/landing" class="text-2xl font-bold tracking-tighter flex items-center gap-2">
+                <img src="{{ url_for('static', filename='img/logo.png') }}" class="h-8 w-8 object-contain" alt="SicherungX Logo">
+                SicherungX
+            </a>
+            <div class="hidden lg:flex space-x-8 text-sm font-medium">
+                <a href="/landing" class="text-slate-300 hover:text-white transition">Home</a>
+                <a href="/agent" class="text-slate-300 hover:text-white transition">Agent</a>
+                <a href="/features" class="text-slate-300 hover:text-white transition">Features</a>
+                <a href="/about" class="text-slate-300 hover:text-white transition">About Us</a>
+                <a href="/support" class="text-slate-300 hover:text-white transition">Support</a>
+            </div>
+            <div class="flex space-x-2 md:space-x-4 items-center">
+                <a href="/login" class="hidden sm:block text-sm font-semibold text-slate-300 hover:text-white transition mr-2">Login (Admin)</a>
+                <a href="/contact" class="px-4 py-2 md:px-5 md:py-2.5 rounded-full bg-gradient-to-r from-sky-400 to-indigo-500 text-white font-semibold text-xs md:text-sm btn-glow shadow-lg shadow-sky-500/20">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow pt-24">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="border-t border-slate-800 bg-slate-900/50 py-8 text-center text-slate-400">
+        <p>&copy; 2026 SicherungX Data Leak Prevention. All rights reserved.</p>
+    </footer>
+</body>
+</html>

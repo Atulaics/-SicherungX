@@ -1,0 +1,102 @@
+{% extends "public/base.html" %}
+
+{% block content %}
+<div class="max-w-5xl mx-auto px-8 py-20">
+    <div class="text-center mb-16">
+        <div class="inline-block px-4 py-1.5 rounded-full border border-slate-700 bg-slate-800/50 text-indigo-400 text-sm font-semibold tracking-wide mb-6">
+            Endpoint Security
+        </div>
+        <h1 class="text-4xl md:text-6xl font-bold mb-6">The <span class="text-gradient">SicherungX Agent</span></h1>
+        <p class="text-lg text-slate-400 max-w-2xl mx-auto">
+            A lightweight, silent Windows service that protects your devices from insider threats and data exfiltration without impacting employee productivity.
+        </p>
+        
+        <div class="mt-10">
+            <a href="/download/agent" class="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-sky-400 to-indigo-500 text-white font-bold text-lg btn-glow shadow-lg shadow-sky-500/25 transition">
+                <i class="fa-solid fa-download"></i> Download Windows Agent (.exe)
+            </a>
+            <p class="text-xs text-slate-500 mt-4">Version 1.0.4 • 12MB • Requires Windows 10/11</p>
+        </div>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-24">
+        <div>
+            <h2 class="text-3xl font-bold text-white mb-6">How It Works</h2>
+            <div class="space-y-6">
+                <div class="flex gap-4">
+                    <div class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 text-sky-400 flex items-center justify-center font-bold shrink-0">1</div>
+                    <div>
+                        <h4 class="text-lg font-bold text-white">Install & Run</h4>
+                        <p class="text-sm text-slate-400 mt-1">Download the `.exe` and run it on any employee workstation. No complex network configuration needed.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 text-sky-400 flex items-center justify-center font-bold shrink-0">2</div>
+                    <div>
+                        <h4 class="text-lg font-bold text-white">Secure Login</h4>
+                        <p class="text-sm text-slate-400 mt-1">The employee logs in using their Email/ID. The agent automatically captures the device ID, OS info, and binds the device to their profile.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 text-sky-400 flex items-center justify-center font-bold shrink-0">3</div>
+                    <div>
+                        <h4 class="text-lg font-bold text-white">Silent Monitoring</h4>
+                        <p class="text-sm text-slate-400 mt-1">The GUI closes and monitoring begins in the background. It continuously streams analytics to the central AI server.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mockup of Agent UI -->
+        <div class="bg-slate-900 rounded-2xl border border-slate-700 overflow-hidden shadow-2xl relative">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-sky-400 to-indigo-500"></div>
+            <div class="p-8 text-center">
+                <h3 class="text-2xl font-bold text-white mb-1"><i class="fa-solid fa-shield-halved text-sky-400 mr-2"></i>SicherungX</h3>
+                <p class="text-xs text-slate-500 mb-8">Endpoint Security Agent</p>
+                
+                <div class="space-y-4 text-left">
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1">Email or Username</label>
+                        <div class="w-full bg-slate-800 border border-slate-700 rounded p-2.5 text-sm text-white">employee@company.com</div>
+                    </div>
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1">Password</label>
+                        <div class="w-full bg-slate-800 border border-slate-700 rounded p-2.5 text-sm text-slate-500">••••••••••</div>
+                    </div>
+                    <button class="w-full py-2.5 bg-sky-500 text-white font-bold rounded mt-2">Connect Device</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="bg-slate-800/30 border border-slate-700 rounded-2xl p-8 lg:p-12 text-center">
+        <h2 class="text-2xl font-bold text-white mb-8">What The Agent Monitors</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="p-4 rounded-xl bg-slate-800/50 border border-slate-700">
+                <i class="fa-brands fa-usb text-3xl text-purple-400 mb-3"></i>
+                <h4 class="font-bold text-slate-200">USB Drives</h4>
+                <p class="text-xs text-slate-400 mt-1">Detects unauthorized mass storage devices</p>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-800/50 border border-slate-700">
+                <i class="fa-solid fa-file-lines text-3xl text-sky-400 mb-3"></i>
+                <h4 class="font-bold text-slate-200">File IO</h4>
+                <p class="text-xs text-slate-400 mt-1">Tracks massive file copying or archiving</p>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-800/50 border border-slate-700">
+                <i class="fa-solid fa-network-wired text-3xl text-emerald-400 mb-3"></i>
+                <h4 class="font-bold text-slate-200">Network Traffic</h4>
+                <p class="text-xs text-slate-400 mt-1">Monitors large outbound data transfers</p>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-800/50 border border-slate-700">
+                <i class="fa-solid fa-clipboard text-3xl text-yellow-400 mb-3"></i>
+                <h4 class="font-bold text-slate-200">Clipboard</h4>
+                <p class="text-xs text-slate-400 mt-1">Prevents copy-pasting of sensitive strings</p>
+            </div>
+        </div>
+        
+        <div class="mt-8 text-xs text-slate-500 flex items-center justify-center gap-2">
+            <i class="fa-solid fa-lock text-sky-500"></i> Privacy Note: The agent only monitors metadata and anomalies, it does not read personal file contents or record keystrokes.
+        </div>
+    </div>
+</div>
+{% endblock %}

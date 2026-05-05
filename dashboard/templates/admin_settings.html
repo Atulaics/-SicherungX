@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+
+{% block page_title %}Admin Settings{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto">
+    <div class="glass-panel p-8 rounded-2xl">
+        <div class="flex items-center gap-6 mb-8 pb-8 border-b border-slate-700/50">
+            <div class="w-24 h-24 rounded-full bg-gradient-to-br from-sky-400 to-indigo-500 text-white flex items-center justify-center font-bold text-4xl shadow-lg relative group">
+                {{ current_user.username[0] | upper }}
+                <div class="absolute inset-0 bg-black/50 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition cursor-pointer">
+                    <i class="fa-solid fa-camera text-xl"></i>
+                </div>
+            </div>
+            <div>
+                <h2 class="text-2xl font-bold text-white">{{ current_user.full_name or current_user.username }}</h2>
+                <p class="text-sky-400">{{ current_user.role | title }}</p>
+            </div>
+        </div>
+
+        <form id="profileForm" class="space-y-6">
+            <div>
+                <label class="block text-sm font-medium text-slate-400 mb-2">Full Name</label>
+                <input type="text" id="fullName" value="{{ current_user.full_name }}" class="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-sky-500 transition">
+            </div>
+            
+            <div class="pt-4">
+                <h3 class="text-lg font-medium text-white mb-4">Change Password</h3>
+                <div>
+                    <label class="block text-sm font-medium text-slate-400 mb-2">New Password (leave blank to keep current)</label>
+                    <input type="password" id="newPassword" class="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-sky-500 transition" placeholder="••••••••">
+                </div>
+            </div>
+
+            <div id="statusMsg" class="hidden text-sm py-2 px-4 rounded-lg"></div>
+
+            <div class="pt-4 flex justify-end">
+                <button type="submit" class="px-6 py-2.5 rounded-lg bg-sky-500 hover:bg-sky-600 text-white font-medium transition shadow-lg shadow-sky-500/20">
+                    Save Profile
+                </button>
+            </div>
+        </form>
+    </div>
+
+    {% if current_user.role == 'admin' %}
+    <div class="glass-panel p-8 rounded-2xl mt-8">
+        <div class="mb-8 pb-4 border-b border-slate-700/50">
+            <h2 class="text-xl font-bold text-white"><i class="fa-solid fa-sliders text-sky-400 mr-2"></i> System Preferences</h2>
+            <p class="text-sm text-slate-400 mt-1">Global settings for the SicherungX dashboard</p>
+        </div>
+
+        <form id="sysSettingsForm" class="space-y-6">
+            <div>
+                <label class="block text-sm font-medium text-slate-400 mb-2">Organization Name</label>
+                <input type="text" id="orgName" value="{{ settings.org_name }}" class="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-sky-500 transition">
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium text-slate-400 mb-2">Default Timezone</label>
+                <select id="timezone" class="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-sky-500 transition">
+                    <option value="UTC" {% if settings.timezone == 'UTC' %}selected{% endif %}>UTC</option>
+                    <option value="America/New_York" {% if settings.timezone == 'America/New_York' %}selected{% endif %}>America/New_York (EST)</option>
+                    <option value="Europe/London" {% if settings.timezone == 'Europe/London' %}selected{% endif %}>Europe/London (GMT)</option>
+                    <option value="Asia/Kolkata" {% if settings.timezone == 'Asia/Kolkata' %}selected{% endif %}>Asia/Kolkata (IST)</option>
+                    <option value="Asia/Tokyo" {% if settings.timezone == 'Asia/Tokyo' %}selected{% endif %}>Asia/Tokyo (JST)</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-slate-400 mb-2">AI Alert Sensitivity Threshold</label>
+                <select id="sensitivity" class="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-sky-500 transition">
+                    <option value="High" {% if settings.alert_sensitivity == 'High' %}selected{% endif %}>High (Flag more events)</option>
+                    <option value="Medium" {% if settings.alert_sensitivity == 'Medium' %}selected{% endif %}>Medium (Balanced)</option>
+                    <option value="Low" {% if settings.alert_sensitivity == 'Low' %}selected{% endif %}>Low (Only severe anomalies)</option>
+                </select>
+            </div>
+
+            <div id="sysStatusMsg" class="hidden text-sm py-2 px-4 rounded-lg"></div>
+
+            <div class="pt-4 flex justify-end">
+                <button type="submit" class="px-6 py-2.5 rounded-lg bg-sky-500 hover:bg-sky-600 text-white font-medium transition shadow-lg shadow-sky-500/20">
+                    Save System Settings
+                </button>
+            </div>
+        </form>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.getElementById('profileForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = e.target.querySelector('button');
+    const msg = document.getElementById('statusMsg');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Saving...';
+    
+    try {
+        const res = await fetch('/api/update-profile', {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                full_name: document.getElementById('fullName').value,
+                password: document.getElementById('newPassword').value
+            })
+        });
+        
+        msg.classList.remove('hidden', 'bg-red-500/20', 'text-red-400');
+        if (res.ok) {
+            msg.classList.add('bg-green-500/20', 'text-green-400');
+            msg.textContent = 'Profile updated successfully!';
+            document.getElementById('newPassword').value = '';
+        } else {
+            throw new Error('Update failed');
+        }
+    } catch (err) {
+        msg.classList.remove('hidden', 'bg-green-500/20', 'text-green-400');
+        msg.classList.add('bg-red-500/20', 'text-red-400');
+        msg.textContent = 'Error updating profile.';
+    } finally {
+        btn.disabled = false;
+        btn.innerHTML = 'Save Profile';
+    }
+});
+
+const sysForm = document.getElementById('sysSettingsForm');
+if (sysForm) {
+    sysForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = e.target.querySelector('button');
+        const msg = document.getElementById('sysStatusMsg');
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Saving...';
+        
+        try {
+            const res = await fetch('/api/settings', {
+                method: 'PUT',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    org_name: document.getElementById('orgName').value,
+                    timezone: document.getElementById('timezone').value,
+                    alert_sensitivity: document.getElementById('sensitivity').value
+                })
+            });
+            
+            msg.classList.remove('hidden', 'bg-red-500/20', 'text-red-400');
+            if (res.ok) {
+                msg.classList.add('bg-green-500/20', 'text-green-400');
+                msg.textContent = 'System settings saved successfully!';
+            } else {
+                throw new Error('Update failed');
+            }
+        } catch (err) {
+            msg.classList.remove('hidden', 'bg-green-500/20', 'text-green-400');
+            msg.classList.add('bg-red-500/20', 'text-red-400');
+            msg.textContent = 'Error saving settings.';
+        } finally {
+            btn.disabled = false;
+            btn.innerHTML = 'Save System Settings';
+        }
+    });
+}
+</script>
+{% endblock %}

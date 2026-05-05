@@ -1,0 +1,251 @@
+{% extends "base.html" %}
+
+{% block page_title %}Live Dashboard{% endblock %}
+
+{% block content %}
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+    <!-- Stat Card 1 -->
+    <a href="/users" class="glass-panel rounded-2xl p-6 flex items-center relative overflow-hidden group hover:ring-2 hover:ring-sky-500/50 transition-all cursor-pointer">
+        <div class="absolute right-0 top-0 w-24 h-24 bg-sky-500/10 rounded-bl-full transition-transform group-hover:scale-110"></div>
+        <div class="rounded-xl bg-sky-500/20 p-4 mr-5 border border-sky-500/30">
+            <i class="fa-solid fa-desktop text-sky-400 text-2xl"></i>
+        </div>
+        <div>
+            <p class="text-sm font-medium text-slate-400">Monitored Endpoints</p>
+            <p class="text-3xl font-bold text-white tracking-tight" id="totalUsers">-</p>
+        </div>
+    </a>
+    
+    <!-- Stat Card 2 -->
+    <a href="/alerts" class="glass-panel rounded-2xl p-6 flex items-center relative overflow-hidden group hover:ring-2 hover:ring-red-500/50 transition-all cursor-pointer">
+        <div class="absolute right-0 top-0 w-24 h-24 bg-red-500/10 rounded-bl-full transition-transform group-hover:scale-110"></div>
+        <div class="rounded-xl bg-red-500/20 p-4 mr-5 border border-red-500/30 shadow-[0_0_15px_rgba(239,68,68,0.2)]">
+            <i class="fa-solid fa-triangle-exclamation text-red-400 text-2xl"></i>
+        </div>
+        <div>
+            <p class="text-sm font-medium text-slate-400">Alerts Today</p>
+            <p class="text-3xl font-bold text-white tracking-tight" id="alertsToday">-</p>
+        </div>
+    </a>
+
+    <!-- Stat Card 3 -->
+    <a href="/users" class="glass-panel rounded-2xl p-6 flex items-center relative overflow-hidden group hover:ring-2 hover:ring-emerald-500/50 transition-all cursor-pointer">
+        <div class="absolute right-0 top-0 w-24 h-24 bg-emerald-500/10 rounded-bl-full transition-transform group-hover:scale-110"></div>
+        <div class="rounded-xl bg-emerald-500/20 p-4 mr-5 border border-emerald-500/30">
+            <i class="fa-solid fa-laptop text-emerald-400 text-2xl"></i>
+        </div>
+        <div>
+            <p class="text-sm font-medium text-slate-400">Active Devices</p>
+            <div class="flex items-center gap-2">
+                <span class="relative flex h-3 w-3">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                </span>
+                <p class="text-3xl font-bold text-emerald-400 tracking-tight" id="activeDevices">-</p>
+            </div>
+        </div>
+    </a>
+</div>
+
+<div class="grid grid-cols-1 xl:grid-cols-4 gap-8 mb-8">
+    <!-- Chart Section -->
+    <div class="xl:col-span-1 glass-panel rounded-2xl p-6 flex flex-col">
+        <h2 class="text-lg font-bold text-white mb-6">Global Risk Distribution</h2>
+        <div class="relative flex-1 flex items-center justify-center min-h-[250px]">
+            <canvas id="riskChart"></canvas>
+        </div>
+    </div>
+
+    <!-- Top Users Analytics -->
+    <div class="xl:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="glass-panel rounded-2xl p-6">
+            <h2 class="text-lg font-bold text-white mb-4"><i class="fa-solid fa-fire text-orange-500 mr-2"></i>Most Active Endpoints</h2>
+            <ul id="mostActiveList" class="space-y-3">
+                <li class="text-slate-500 text-sm">Loading analytics...</li>
+            </ul>
+        </div>
+        <div class="glass-panel rounded-2xl p-6 border border-red-500/20 shadow-[0_0_20px_rgba(239,68,68,0.05)]">
+            <h2 class="text-lg font-bold text-white mb-4"><i class="fa-solid fa-skull-crossbones text-red-500 mr-2"></i>Highest Risk Users</h2>
+            <ul id="highRiskList" class="space-y-3">
+                <li class="text-slate-500 text-sm">Loading analytics...</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="glass-panel rounded-2xl p-6 flex flex-col h-[500px]">
+    <!-- Live Activity Feed -->
+        <div class="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center mb-6 gap-4 border-b border-slate-700/50 pb-4">
+            <div class="flex items-center gap-3">
+                <h2 class="text-lg font-bold text-white">Live Activity Feed</h2>
+                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 animate-pulse">LIVE</span>
+            </div>
+            
+            <div class="flex items-center gap-3 w-full sm:w-auto">
+                <a href="/api/logs/export" class="px-4 py-1.5 rounded-lg bg-slate-800 border border-slate-600 text-slate-300 text-sm hover:bg-slate-700 hover:text-white transition flex items-center gap-2">
+                    <i class="fa-solid fa-file-csv"></i> Export CSV
+                </a>
+                <div class="relative flex-1 sm:w-48">
+                    <i class="fa-solid fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-500 text-xs"></i>
+                    <input type="text" id="feedSearch" placeholder="Search user or activity..." class="w-full bg-slate-800 border border-slate-700 text-sm rounded-lg pl-8 pr-3 py-1.5 focus:outline-none focus:border-sky-500 text-slate-300 transition">
+                </div>
+                <select id="riskFilter" class="bg-slate-800 border border-slate-700 text-slate-300 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 p-1.5">
+                    <option value="all">All Risks</option>
+                    <option value="high">High Risk</option>
+                    <option value="anomalies">Anomalies</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="flex-1 overflow-auto pr-2 custom-scrollbar">
+            <ul class="space-y-3" id="recentActivityList">
+                <li class="text-slate-500 text-center py-4">Loading real-time events...</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<style>
+.custom-scrollbar::-webkit-scrollbar { width: 6px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.2); border-radius: 10px; }
+.custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(148, 163, 184, 0.4); }
+</style>
+<script>
+    let chartInstance = null;
+    let lastRenderedLogsStr = "";
+
+    let allLogs = [];
+
+    async function fetchDashboardData() {
+        try {
+            // Stats & Chart
+            const statsRes = await fetch('/api/stats');
+            const stats = await statsRes.json();
+            
+            document.getElementById('totalUsers').textContent = stats.total_users;
+            document.getElementById('alertsToday').textContent = stats.alerts_today;
+            document.getElementById('activeDevices').textContent = stats.active_devices;
+
+            const ctx = document.getElementById('riskChart').getContext('2d');
+            if(chartInstance) {
+                chartInstance.data.datasets[0].data = stats.risk_distribution;
+                chartInstance.update();
+            } else {
+                chartInstance = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Low Risk', 'Medium Risk', 'High Risk'],
+                        datasets: [{
+                            data: stats.risk_distribution,
+                            backgroundColor: ['#10b981', '#f59e0b', '#ef4444'],
+                            borderWidth: 1,
+                            borderColor: '#1e293b',
+                            hoverOffset: 6
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { position: 'bottom', labels: { color: '#cbd5e1', padding: 20, font: { family: 'Inter', size: 12 } } }
+                        },
+                        cutout: '75%'
+                    }
+                });
+            }
+            
+            // Populate Most Active List
+            const maList = document.getElementById('mostActiveList');
+            maList.innerHTML = '';
+            if (stats.most_active_users.length === 0) maList.innerHTML = '<li class="text-slate-500 text-sm">No activity found.</li>';
+            stats.most_active_users.forEach((u, i) => {
+                maList.innerHTML += `<li class="flex items-center justify-between text-sm"><a href="/user/${u.username}" class="text-sky-400 hover:underline">@${u.username}</a> <span class="text-slate-400 bg-slate-800 px-2 py-0.5 rounded">${u.count} events</span></li>`;
+            });
+
+            // Populate High Risk List
+            const hrList = document.getElementById('highRiskList');
+            hrList.innerHTML = '';
+            if (stats.high_risk_users.length === 0) hrList.innerHTML = '<li class="text-slate-500 text-sm">No high risk users.</li>';
+            stats.high_risk_users.forEach(u => {
+                hrList.innerHTML += `<li class="flex items-center justify-between text-sm"><a href="/user/${u.username}" class="text-white font-bold hover:text-sky-400">@${u.username}</a> <span class="text-red-400 font-mono">Risk: ${u.max_risk.toFixed(1)}</span></li>`;
+            });
+
+            // Live Logs
+            const logsRes = await fetch('/api/logs');
+            const logs = await logsRes.json();
+            
+            const currentLogsStr = JSON.stringify(logs);
+            if (currentLogsStr === lastRenderedLogsStr) return;
+            lastRenderedLogsStr = currentLogsStr;
+
+            allLogs = logs;
+            renderLogs();
+
+        } catch (err) {
+            console.error("Dashboard fetch error:", err);
+        }
+    }
+    
+    function renderLogs() {
+        const filter = document.getElementById('riskFilter').value;
+        const searchTerm = document.getElementById('feedSearch').value.toLowerCase();
+        const list = document.getElementById('recentActivityList');
+        list.innerHTML = '';
+        
+        let filteredLogs = allLogs;
+        if(filter === 'high') filteredLogs = allLogs.filter(l => l.risk_score > 70);
+        if(filter === 'anomalies') filteredLogs = allLogs.filter(l => l.is_anomaly === 1);
+        
+        if(searchTerm) {
+            filteredLogs = filteredLogs.filter(l => 
+                l.username.toLowerCase().includes(searchTerm) || 
+                l.activity_type.toLowerCase().includes(searchTerm) ||
+                l.details.toLowerCase().includes(searchTerm)
+            );
+        }
+        
+        if(filteredLogs.length === 0) {
+            list.innerHTML = '<li class="text-slate-500 text-center py-8">No activity matches your filter.</li>';
+            return;
+        }
+
+        filteredLogs.forEach(log => {
+            let riskColor = log.risk_score > 70 ? 'text-red-400 bg-red-500/10 border-red-500/20' : 
+                            log.risk_score > 30 ? 'text-yellow-400 bg-yellow-500/10 border-yellow-500/20' : 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20';
+            
+            let iconColor = log.is_anomaly ? 'text-red-400 bg-red-500/20' : 'text-sky-400 bg-sky-500/20';
+            let icon = log.activity_type.includes('USB') ? 'fa-usb' : log.activity_type.includes('FILE') ? 'fa-file-lines' : 'fa-network-wired';
+
+            list.innerHTML += `
+                <li class="flex items-center p-3 rounded-xl bg-slate-800/40 border border-slate-700/50 hover:bg-slate-700/40 transition">
+                    <div class="w-10 h-10 rounded-full ${iconColor} flex items-center justify-center mr-4 shrink-0 shadow-inner">
+                        <i class="fa-solid ${icon}"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center justify-between mb-0.5">
+                            <a href="/user/${log.username}" class="text-sm font-bold text-white hover:text-sky-400 transition truncate">${log.username}</a>
+                            <span class="text-[10px] font-mono font-semibold px-2 py-0.5 rounded border ${riskColor}">Risk: ${log.risk_score}</span>
+                        </div>
+                        <p class="text-xs text-sky-300 font-medium">${log.activity_type}</p>
+                        <div class="flex items-center justify-between mt-1">
+                            <p class="text-xs text-slate-400 truncate pr-4">${log.details}</p>
+                            <p class="text-[10px] text-slate-500 whitespace-nowrap font-mono">${formatUTCtoLocal(log.timestamp).split(',')[1]}</p>
+                        </div>
+                    </div>
+                </li>
+            `;
+        });
+    }
+
+    document.getElementById('riskFilter').addEventListener('change', renderLogs);
+    document.getElementById('feedSearch').addEventListener('input', renderLogs);
+    
+    // Initial fetch
+    fetchDashboardData();
+    // Poll every 2 seconds
+    setInterval(fetchDashboardData, 2000);
+</script>
+{% endblock %}

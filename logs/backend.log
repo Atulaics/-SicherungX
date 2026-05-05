@@ -1,0 +1,59 @@
+2026-05-01 21:43:22,236 INFO Flask Application initialized.
+2026-05-01 23:59:19,521 INFO Flask Application initialized.
+2026-05-01 23:59:19,872 INFO Starting server on port 5000...
+2026-05-02 00:09:38,657 INFO Flask Application initialized.
+2026-05-02 00:09:38,684 INFO Starting server on port 5000...
+2026-05-02 00:40:56,890 INFO Flask Application initialized.
+2026-05-02 00:40:56,904 INFO Starting server on port 5000...
+2026-05-02 00:57:19,547 INFO Flask Application initialized.
+2026-05-02 00:57:19,558 INFO Starting server on port 5000...
+2026-05-02 01:04:34,431 INFO Flask Application initialized.
+2026-05-02 01:04:34,440 INFO Starting server on port 5000...
+2026-05-02 01:26:40,557 INFO Flask Application initialized.
+2026-05-02 01:26:40,568 INFO Starting server on port 5000...
+2026-05-02 01:37:33,643 INFO Flask Application initialized.
+2026-05-02 01:37:33,652 INFO Starting server on port 5000...
+2026-05-02 01:43:29,338 INFO Flask Application initialized.
+2026-05-02 01:43:29,348 INFO Starting server on port 5000...
+2026-05-02 02:05:53,664 INFO Flask Application initialized.
+2026-05-02 02:05:53,675 INFO Starting server on port 5000...
+2026-05-02 02:30:15,968 INFO Flask Application initialized.
+2026-05-02 02:30:15,980 INFO Starting server on port 5000...
+2026-05-02 02:48:24,446 INFO Flask Application initialized.
+2026-05-02 02:48:24,455 INFO Starting server on port 5000...
+2026-05-02 03:00:39,930 INFO Flask Application initialized.
+2026-05-02 03:00:40,032 INFO Starting server on port 5000...
+2026-05-02 11:25:25,921 INFO Flask Application initialized.
+2026-05-02 11:25:26,271 INFO Starting server on port 5000...
+2026-05-02 11:44:51,671 INFO Flask Application initialized.
+2026-05-02 11:44:51,698 INFO Starting server on port 5000...
+2026-05-02 11:58:33,469 INFO Flask Application initialized.
+2026-05-02 11:58:33,478 INFO Starting server on port 5000...
+2026-05-02 12:08:54,565 ERROR Error processing agent data: database is locked
+2026-05-02 12:09:15,157 ERROR Error processing agent data: database is locked
+2026-05-02 12:09:28,482 ERROR Failed to log audit event: database is locked
+2026-05-02 12:09:35,748 ERROR Error processing agent data: database is locked
+2026-05-02 12:09:56,289 ERROR Error processing agent data: database is locked
+2026-05-02 12:10:16,878 ERROR Error processing agent data: database is locked
+2026-05-02 12:10:37,819 ERROR Error processing agent data: database is locked
+2026-05-02 12:10:58,396 ERROR Error processing agent data: database is locked
+2026-05-02 12:11:19,017 ERROR Error processing agent data: database is locked
+2026-05-02 12:11:39,592 ERROR Error processing agent data: database is locked
+2026-05-02 12:12:00,132 ERROR Error processing agent data: database is locked
+2026-05-02 12:12:20,680 ERROR Error processing agent data: database is locked
+2026-05-02 12:12:41,246 ERROR Error processing agent data: database is locked
+2026-05-02 12:13:01,802 ERROR Error processing agent data: database is locked
+2026-05-02 12:13:22,358 ERROR Error processing agent data: database is locked
+2026-05-02 12:13:42,899 ERROR Error processing agent data: database is locked
+2026-05-02 12:14:03,429 ERROR Error processing agent data: database is locked
+2026-05-02 12:14:24,010 ERROR Error processing agent data: database is locked
+2026-05-02 12:14:44,587 ERROR Error processing agent data: database is locked
+2026-05-02 12:15:05,135 ERROR Error processing agent data: database is locked
+2026-05-02 12:15:25,704 ERROR Error processing agent data: database is locked
+2026-05-02 12:15:46,288 ERROR Error processing agent data: database is locked
+2026-05-02 12:29:29,522 INFO Flask Application initialized.
+2026-05-02 12:29:29,662 INFO Starting server on 192.168.56.1:5000...
+2026-05-02 13:01:46,712 INFO Flask Application initialized.
+2026-05-02 13:01:46,903 INFO Starting server on 192.168.56.1:5000...
+2026-05-03 12:28:10,855 INFO Flask Application initialized.
+2026-05-03 12:28:11,227 INFO Starting server on 192.168.56.1:5000...

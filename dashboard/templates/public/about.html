@@ -1,0 +1,24 @@
+{% extends "public/base.html" %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto px-8 py-20 text-center">
+    <h1 class="text-4xl md:text-5xl font-bold mb-6">About <span class="text-gradient">SicherungX</span></h1>
+    <p class="text-lg text-slate-400 mb-12">Built to address the modern challenges of insider threats and data leakage in corporate environments.</p>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+        <div class="bg-slate-800/40 border border-slate-700 p-8 rounded-2xl backdrop-blur-sm">
+            <h3 class="text-2xl font-bold text-white mb-4"><i class="fa-solid fa-bullseye text-sky-400 mr-3"></i>Our Mission</h3>
+            <p class="text-slate-300 leading-relaxed">
+                To provide an invisible, lightweight, and highly accurate Data Leak Prevention system that relies on behavioral analysis rather than strict rulesets, preventing sensitive data exfiltration seamlessly.
+            </p>
+        </div>
+        
+        <div class="bg-slate-800/40 border border-slate-700 p-8 rounded-2xl backdrop-blur-sm">
+            <h3 class="text-2xl font-bold text-white mb-4"><i class="fa-solid fa-microchip text-indigo-400 mr-3"></i>The Technology</h3>
+            <p class="text-slate-300 leading-relaxed">
+                Using an advanced unsupervised learning model (Isolation Forest), SicherungX establishes a baseline for normal employee behavior. It silently monitors File I/O, USB mounting, and Network IO, scoring anomalies in real-time.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

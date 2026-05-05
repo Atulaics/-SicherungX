@@ -1,0 +1,14 @@
+.venv/
+venv/
+__pycache__/
+*.pyc
+.env
+database/*.db
+logs/
+build/
+dist/
+*.spec
+.DS_Store
+backend.log
+backend_err.txt
+backend_out.txt

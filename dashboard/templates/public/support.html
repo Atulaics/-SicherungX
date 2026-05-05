@@ -1,0 +1,31 @@
+{% extends "public/base.html" %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto px-8 py-20 text-center">
+    <h1 class="text-4xl font-bold mb-4">Help & <span class="text-gradient">Support</span></h1>
+    <p class="text-slate-400 mb-12">Find answers or reach out to our enterprise support team.</p>
+    
+    <div class="bg-slate-800/40 border border-slate-700 p-8 rounded-2xl backdrop-blur-sm text-left">
+        <h3 class="text-xl font-bold text-white mb-6">Frequently Asked Questions</h3>
+        <div class="space-y-6">
+            <div>
+                <h4 class="font-bold text-sky-400">How do I deploy the agent silently?</h4>
+                <p class="text-sm text-slate-300 mt-1">Enterprise customers can deploy `SicherungAgent.exe` via SCCM or Intune using the `--hidden` and `--auto-login` flags.</p>
+            </div>
+            <div>
+                <h4 class="font-bold text-sky-400">Does the agent work offline?</h4>
+                <p class="text-sm text-slate-300 mt-1">Yes. If the endpoint loses connection to the SaaS backend, the agent caches logs locally and uploads them sequentially once the connection is restored.</p>
+            </div>
+            <div>
+                <h4 class="font-bold text-sky-400">How is the AI model trained?</h4>
+                <p class="text-sm text-slate-300 mt-1">The Isolation Forest model is pre-trained on generic insider threat behavior, and fine-tunes itself automatically based on the rolling 7-day baseline of your organization.</p>
+            </div>
+        </div>
+        
+        <div class="mt-10 pt-8 border-t border-slate-700 flex flex-col items-center">
+            <p class="text-slate-400 mb-4">Still need help?</p>
+            <a href="/contact" class="px-6 py-3 rounded-full bg-slate-700 text-white font-bold hover:bg-slate-600 transition">Contact Support Team</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

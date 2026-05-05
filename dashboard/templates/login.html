@@ -1,0 +1,48 @@
+{% extends "public/base.html" %}
+
+{% block content %}
+<div class="max-w-md mx-auto px-8 py-20">
+    <div class="glass-panel p-8 rounded-2xl border border-slate-700/50 shadow-2xl relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-sky-400 to-indigo-500"></div>
+        
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-white tracking-tight mb-2">Welcome Back</h1>
+            <p class="text-sm text-slate-400">Sign in to your SicherungX account</p>
+        </div>
+        
+        {% if error %}
+        <div class="bg-red-500/10 border border-red-500/20 text-red-400 p-3 rounded-lg text-sm mb-6 flex items-center gap-2">
+            <i class="fa-solid fa-circle-exclamation"></i> {{ error }}
+        </div>
+        {% endif %}
+        
+        <form method="POST" action="/login" class="space-y-5">
+            <div>
+                <label for="username" class="block text-sm font-medium text-slate-300 mb-1">Username</label>
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <i class="fa-solid fa-user text-slate-500"></i>
+                    </div>
+                    <input type="text" id="username" name="username" class="block w-full pl-10 pr-3 py-2.5 bg-slate-900/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:ring-sky-500 focus:border-sky-500 sm:text-sm transition" placeholder="admin" required>
+                </div>
+            </div>
+            
+            <div>
+                <label for="password" class="block text-sm font-medium text-slate-300 mb-1">Password</label>
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <i class="fa-solid fa-lock text-slate-500"></i>
+                    </div>
+                    <input type="password" id="password" name="password" class="block w-full pl-10 pr-3 py-2.5 bg-slate-900/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:ring-sky-500 focus:border-sky-500 sm:text-sm transition" placeholder="••••••••" required>
+                </div>
+            </div>
+            
+            <div class="pt-2">
+                <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-bold text-white bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 btn-glow transition">
+                    Secure Login <i class="fa-solid fa-arrow-right ml-2 mt-0.5"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

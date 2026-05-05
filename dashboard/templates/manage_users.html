@@ -1,0 +1,203 @@
+{% extends "base.html" %}
+
+{% block page_title %}User Management{% endblock %}
+
+{% block content %}
+<div class="glass-panel p-6 rounded-2xl h-full flex flex-col">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+        <div>
+            <h2 class="text-lg font-bold text-white">System Users & Roles</h2>
+            <p class="text-sm text-slate-400">Manage all endpoints and administrative accounts.</p>
+        </div>
+        <button onclick="document.getElementById('addUserForm').classList.toggle('hidden')" class="w-full sm:w-auto px-4 py-2 bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-bold rounded-full text-sm shadow-lg shadow-sky-500/20 transition flex justify-center items-center gap-2">
+            <i class="fa-solid fa-user-plus"></i> Add Employee
+        </button>
+    </div>
+    
+    <!-- Add User Form (Hidden by default) -->
+    <div id="addUserForm" class="hidden bg-slate-800/50 border border-slate-700/50 rounded-xl p-6 mb-8 transition-all">
+        <h3 class="text-white font-bold mb-4 border-b border-slate-700 pb-2">Register New Employee</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div>
+                <label class="block text-xs text-slate-400 mb-1">Full Name</label>
+                <input type="text" id="newFullName" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-sm text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 outline-none" placeholder="John Doe">
+            </div>
+            <div>
+                <label class="block text-xs text-slate-400 mb-1">Username <span class="text-red-400">*</span></label>
+                <input type="text" id="newUsername" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-sm text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 outline-none" placeholder="jdoe" required>
+            </div>
+            <div>
+                <label class="block text-xs text-slate-400 mb-1">Email</label>
+                <input type="email" id="newEmail" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-sm text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 outline-none" placeholder="john@company.com">
+            </div>
+            <div>
+                <label class="block text-xs text-slate-400 mb-1">Password <span class="text-red-400">*</span></label>
+                <div class="flex gap-2">
+                    <input type="password" id="newPassword" class="flex-1 bg-slate-900 border border-slate-700 rounded p-2 text-sm text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 outline-none" placeholder="••••••••" required>
+                    <button onclick="createUser()" class="bg-sky-500 hover:bg-sky-400 text-white px-4 rounded font-bold transition text-sm">Add</button>
+                </div>
+            </div>
+        </div>
+        <div id="addError" class="text-red-400 text-xs mt-2 hidden"></div>
+        <div id="addSuccess" class="text-emerald-400 text-xs mt-2 hidden"></div>
+    </div>
+    
+    <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+            <thead>
+                <tr class="border-b border-slate-700/50 text-slate-400 text-sm">
+                    <th class="pb-3 pl-4 font-medium">Employee</th>
+                    <th class="pb-3 font-medium">Email</th>
+                    <th class="pb-3 font-medium">Role</th>
+                    <th class="pb-3 font-medium">Status</th>
+                    <th class="pb-3 font-medium">Joined</th>
+                    <th class="pb-3 pr-4 font-medium text-right">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="usersTable" class="text-sm divide-y divide-slate-700/30">
+                <tr><td colspan="6" class="text-center py-8 text-slate-500">Loading users...</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+async function loadUsers() {
+    try {
+        const res = await fetch('/api/users');
+        const users = await res.json();
+        const tbody = document.getElementById('usersTable');
+        tbody.innerHTML = '';
+        
+        const currentUserId = document.querySelector('meta[name="current-user-id"]')?.content;
+        
+        users.forEach(u => {
+            const isCurrent = u.id.toString() === currentUserId;
+            let actionBtn = '';
+            
+            if (!isCurrent) {
+                if (u.role === 'admin') {
+                    actionBtn = `<button onclick="toggleRole(${u.id}, 'remove')" class="px-3 py-1 bg-slate-700 hover:bg-slate-600 text-white rounded text-xs transition">Remove Admin</button>`;
+                } else {
+                    actionBtn = `<button onclick="toggleRole(${u.id}, 'make')" class="px-3 py-1 bg-sky-500/20 hover:bg-sky-500/30 text-sky-400 border border-sky-500/30 rounded text-xs transition">Make Admin</button>`;
+                }
+            } else {
+                actionBtn = `<span class="text-xs text-slate-500 italic">You</span>`;
+            }
+            
+            const statusHTML = u.status === 'active' ? 
+                `<span class="flex items-center gap-1.5 text-emerald-400 text-xs font-semibold"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> Active</span>` :
+                `<span class="flex items-center gap-1.5 text-slate-500 text-xs font-semibold"><span class="w-2 h-2 rounded-full bg-slate-600"></span> Offline</span>`;
+
+            tbody.innerHTML += `
+                <tr class="hover:bg-slate-800/30 transition">
+                    <td class="py-4 pl-4">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold mr-3 shadow-inner shadow-indigo-500/20 border border-indigo-500/30">${u.username[0].toUpperCase()}</div>
+                            <div>
+                                <p class="font-medium text-white">${u.full_name || u.username}</p>
+                                <p class="text-xs text-slate-500">@${u.username}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="py-4 text-slate-400 text-xs">${u.email || 'N/A'}</td>
+                    <td class="py-4">
+                        <span class="px-2 py-0.5 rounded-full text-[10px] font-bold tracking-wider ${u.role === 'admin' ? 'bg-sky-500/20 text-sky-400 border border-sky-500/20' : 'bg-slate-700/50 text-slate-300'}">${u.role.toUpperCase()}</span>
+                    </td>
+                    <td class="py-4">${statusHTML}</td>
+                    <td class="py-4 text-slate-400 text-xs">${formatUTCtoLocal(u.created_at).split(',')[0]}</td>
+                    <td class="py-4 pr-4 text-right space-x-2">
+                        ${actionBtn}
+                        <a href="/user/${u.id}" class="px-3 py-1 bg-slate-700 hover:bg-slate-600 text-white rounded text-xs transition inline-block">View Profile</a>
+                    </td>
+                </tr>
+            `;
+        });
+    } catch (e) {
+        console.error("Error loading users:", e);
+    }
+}
+
+async function toggleRole(id, action) {
+    if(!confirm(`Are you sure you want to ${action} admin rights?`)) return;
+    
+    try {
+        const res = await fetch(`/api/${action}-admin`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({id: id})
+        });
+        
+        if(res.ok) {
+            loadUsers();
+        } else {
+            const data = await res.json();
+            alert(data.error || 'Failed to update role');
+        }
+    } catch(e) {
+        alert('Server error');
+    }
+}
+
+async function createUser() {
+    const fn = document.getElementById('newFullName').value;
+    const un = document.getElementById('newUsername').value;
+    const em = document.getElementById('newEmail').value;
+    const pw = document.getElementById('newPassword').value;
+    
+    const errDiv = document.getElementById('addError');
+    const succDiv = document.getElementById('addSuccess');
+    errDiv.classList.add('hidden');
+    succDiv.classList.add('hidden');
+    
+    if(!un || !pw) {
+        errDiv.textContent = "Username and Password are required.";
+        errDiv.classList.remove('hidden');
+        return;
+    }
+    
+    try {
+        const res = await fetch('/api/create-user', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                full_name: fn,
+                username: un,
+                email: em,
+                password: pw,
+                role: 'employee'
+            })
+        });
+        
+        const data = await res.json();
+        if(res.ok) {
+            succDiv.textContent = "Employee added successfully.";
+            succDiv.classList.remove('hidden');
+            
+            // clear form
+            document.getElementById('newFullName').value = '';
+            document.getElementById('newUsername').value = '';
+            document.getElementById('newEmail').value = '';
+            document.getElementById('newPassword').value = '';
+            
+            loadUsers();
+            
+            setTimeout(() => {
+                succDiv.classList.add('hidden');
+                document.getElementById('addUserForm').classList.add('hidden');
+            }, 2000);
+        } else {
+            errDiv.textContent = data.error || "Failed to add employee.";
+            errDiv.classList.remove('hidden');
+        }
+    } catch (e) {
+        errDiv.textContent = "Server error.";
+        errDiv.classList.remove('hidden');
+    }
+}
+
+loadUsers();
+</script>
+{% endblock %}

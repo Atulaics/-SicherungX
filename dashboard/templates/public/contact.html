@@ -1,0 +1,34 @@
+{% extends "public/base.html" %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto px-8 py-20">
+    <div class="text-center mb-12">
+        <h1 class="text-4xl font-bold mb-4">Contact <span class="text-gradient">Sales</span></h1>
+        <p class="text-slate-400">Request a demo or ask questions about deployment.</p>
+    </div>
+    
+    <div class="bg-slate-800/40 border border-slate-700 p-8 rounded-2xl backdrop-blur-sm">
+        <form class="space-y-6" onsubmit="event.preventDefault(); alert('Thank you for your message! Our sales team will contact you shortly.'); this.reset();">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-2">Full Name</label>
+                    <input type="text" required class="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-sky-500 transition" placeholder="John Doe">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-2">Work Email</label>
+                    <input type="email" required class="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-sky-500 transition" placeholder="john@company.com">
+                </div>
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium text-slate-300 mb-2">Message</label>
+                <textarea rows="4" required class="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-sky-500 transition" placeholder="How can we help?"></textarea>
+            </div>
+            
+            <button type="submit" class="w-full py-4 rounded-lg bg-gradient-to-r from-sky-400 to-indigo-500 text-white font-bold text-lg hover:from-sky-500 hover:to-indigo-600 transition shadow-lg shadow-sky-500/25">
+                Send Message
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}
