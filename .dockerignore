@@ -1,0 +1,17 @@
+.venv/
+venv/
+__pycache__/
+*.pyc
+logs/
+database/*.db
+.env
+.git/
+.gitignore
+README.md
+DOCUMENTATION.md
+build/
+dist/
+*.spec
+backend.log
+backend_err.txt
+backend_out.txt
