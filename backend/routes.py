@@ -109,6 +109,7 @@ def download_agent():
 
 @main_bp.route('/robots.txt')
 @main_bp.route('/sitemap.xml')
+@main_bp.route('/google36b21a73d69529c3.html')
 def static_from_root():
     return send_from_directory(STATIC_PATH, request.path[1:])
 
