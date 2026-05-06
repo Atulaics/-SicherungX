@@ -4,6 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SicherungX - Admin Control</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="SicherungX - An advanced AI-driven Data Leak Prevention (DLP) and monitoring platform.">
+    <meta name="keywords" content="DLP, Data Leak Prevention, Cybersecurity, Threat Monitoring, AI Security">
+    <meta name="author" content="SicherungX Team">
+
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="SicherungX | Secure Your Data">
+    <meta property="og:description" content="Advanced AI-driven Data Leak Prevention platform to secure enterprise data.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-render-app.onrender.com">
+
+    <!-- Google Analytics Placeholder (Replace G-XXXXXXXXXX with your Tracking ID) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
     <meta name="user-role" content="{% if current_user.is_authenticated %}{{ current_user.role }}{% endif %}">
     <meta name="current-user-id" content="{% if current_user.is_authenticated %}{{ current_user.id }}{% endif %}">
     <script src="https://cdn.tailwindcss.com"></script>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://your-render-app.onrender.com/</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://your-render-app.onrender.com/landing</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://your-render-app.onrender.com/agent</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://your-render-app.onrender.com/features</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://your-render-app.onrender.com/about</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://your-render-app.onrender.com/contact</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://your-render-app.onrender.com/support</loc>
+    <priority>0.7</priority>
+  </url>
+</urlset>

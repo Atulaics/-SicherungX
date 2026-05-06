@@ -23,6 +23,7 @@ def verify_agent_key():
 logger = setup_logger('backend_routes', 'backend.log')
 DB_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'database', 'sicherungx.db')
 DIST_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'dist')
+STATIC_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'dashboard', 'static')
 
 main_bp = Blueprint('main', __name__)
 api_bp = Blueprint('api', __name__)
@@ -105,6 +106,11 @@ def contact():
 @main_bp.route('/download/agent')
 def download_agent():
     return send_from_directory(DIST_PATH, 'SicherungAgent.exe', as_attachment=True)
+
+@main_bp.route('/robots.txt')
+@main_bp.route('/sitemap.xml')
+def static_from_root():
+    return send_from_directory(STATIC_PATH, request.path[1:])
 
 # --- Authentication Routes ---
 @main_bp.route('/login', methods=['GET', 'POST'])
